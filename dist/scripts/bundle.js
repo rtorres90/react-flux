@@ -49477,11 +49477,16 @@ module.exports = AuthorPage;
 "use strict";
 
 var React = require('react');
+var Router = require('react-router');
 var AuthorForm = require('./authorForm');
 var AuthorApi = require('../../api/AuthorApi');
 
 
 var ManageAuthorPage = React.createClass({displayName: "ManageAuthorPage",
+  mixins: [
+    Router.Navigation
+  ],
+
   getInitialState: function () {
     return {
       author: {id: '', firstName: '', lastName: ''}
@@ -49498,6 +49503,7 @@ var ManageAuthorPage = React.createClass({displayName: "ManageAuthorPage",
   saveAuthor: function () {
     event.preventDefault();
     AuthorApi.saveAuthor(this.state.author);
+    this.transitionTo('authors');
   },
 
   render: function () {
@@ -49512,7 +49518,7 @@ var ManageAuthorPage = React.createClass({displayName: "ManageAuthorPage",
 
 module.exports = ManageAuthorPage;
 
-},{"../../api/AuthorApi":198,"./authorForm":204,"react":197}],208:[function(require,module,exports){
+},{"../../api/AuthorApi":198,"./authorForm":204,"react":197,"react-router":28}],208:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
