@@ -49259,6 +49259,20 @@ module.exports = NotFoundPage;
 var React = require("react");
 
 var About = React.createClass({displayName: "About",
+  statics: {
+    willTransitionTo: function (transition, params, query, callback) {
+      if(!confirm("do you want to read?")){
+        transition.about();
+      }else{
+        callback();
+      }
+    },
+    willTransitionFrom: function (transition, component) {
+      if(!confirm("do you want to leave?")){
+        transition.about();
+      }
+    }
+  },
   render: function () {
     return (
       React.createElement("div", null, 
